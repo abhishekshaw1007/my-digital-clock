@@ -2,11 +2,14 @@
   "name": "react-boilerplate",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://abhishekshaw1007.github.io/my-digital-clock/",
   "main": "index.js",
   "scripts": {
     "test": "jest",
     "start": "webpack-dev-server --mode development --watch --open --hot",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build -r https://github.com/abhishekshaw1007/my-digital-clock.git"
   },
   "keywords": [],
   "author": "",
