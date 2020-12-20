@@ -12,7 +12,10 @@ class App extends Component {
   render() {
     return (
       <div className="Clock">
-        <h3 id="time">{this.getTimeString()}</h3>
+        <h3 id="time">
+          {this.getTimeString()}
+          <h6 id="day">{this.returnDay()}</h6>
+        </h3>
       </div>
     );
   }
@@ -26,7 +29,7 @@ class App extends Component {
   }
 
   componentWillUnmount() {
-      clearInterval(this.intervalId);
+    clearInterval(this.intervalId);
   }
 
   getTimeString() {
@@ -42,9 +45,40 @@ class App extends Component {
     const hourString = this.padNumberToTwoDigits(twelveHourFormat);
     const minString = this.padNumberToTwoDigits(minutes);
     const secondString = this.padNumberToTwoDigits(seconds);
+    // console.log(dayStr);
 
     const timeString = `${hourString}:${minString}:${secondString} ${amOrPm}`;
     return timeString;
+  }
+
+  returnDay() {
+    const currTime = this.state.time;
+    const day = currTime.getUTCDay();
+    let dayStr = null;
+    switch (day) {
+      case 1:
+        dayStr = "MON";
+        break;
+      case 2:
+        dayStr = "TUE";
+        break;
+      case 3:
+        dayStr = "WED";
+        break;
+      case 4:
+        dayStr = "THU";
+        break;
+      case 5:
+        dayStr = "FRI";
+        break;
+      case 6:
+        dayStr = "SAT";
+        break;
+      case 0:
+        dayStr = "SUN";
+        break;
+    }
+    return dayStr;
   }
 
   padNumberToTwoDigits(num) {
